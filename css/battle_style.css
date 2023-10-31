@@ -1,0 +1,94 @@
+main {
+    position: relative;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: 
+        "left_top ctr right_top" 100px
+        "left_mid ctr right_mid" 1fr
+        "btm      btm btm"       250px
+        / 3fr     4fr 3fr;
+}
+
+#left_top {
+    grid-area: left_top;
+}
+
+#left_mid {
+    grid-area: left_mid;
+}
+
+#ctr {
+    grid-area: ctr;
+    flex-direction: row;
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    color: yellow;
+    text-shadow: 7px 7px 0px brown;
+}
+
+#right_top {
+    grid-area: right_top;
+}
+
+#right_mid {
+    grid-area: right_mid;
+}
+
+#btm {
+    grid-area: btm;
+}
+
+#container>div>img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+#container>#btm>img,
+#container>#left_top>img,
+#container>#right_top>img  {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+#janken_list {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 250px;
+    background-color: grey;
+}
+
+#janken_list>li {
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+#janken_list>li:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s 0s ease-in-out;
+}
+
+#battle_field_list {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+#janken_list>li>img,
+#battle_field_list>li>img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+

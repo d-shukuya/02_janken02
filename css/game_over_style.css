@@ -1,0 +1,47 @@
+main {
+    flex-direction: column;
+}
+
+#title_box {
+    width: 100%;
+    height: 20%;
+    display: flex;
+}
+
+#title_box>h1 {
+    font-size: 160px;
+    font-weight: bold;
+    width: 100%;
+    color: yellow;
+    text-shadow: 7px 7px 0px brown;
+    margin: auto;
+    text-align: center;
+}
+
+#ryu_img_box {
+    width: 100%;
+    height: 60%;
+    display: flex;
+}
+#ryu_img_box>img {
+    height: 100%;
+    width: auto;
+    margin: auto;
+}
+
+
+#retry_btn_box {
+    width: 100%;
+    height: 20%;
+    display: flex;
+}
+
+#retry_btn_box>a {
+    height: 100px;
+    width: 300px;
+    font-size: 60px;
+    color: rgb(150, 150, 150);
+    margin: auto;
+    text-align: center;
+    line-height: 100px;
+}

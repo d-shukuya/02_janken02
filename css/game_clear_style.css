@@ -1,0 +1,42 @@
+main {
+    position: relative;
+}
+
+#bg_img {
+    height: 100%;
+    width: auto;
+    position: relative;
+}
+
+#title_box {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    right: 0%;
+}
+
+#title_box>p {
+    font-size: 160px;
+    font-weight: bold;
+    width: 100%;
+    color: yellow;
+    text-shadow: 7px 7px 0px brown;
+    text-align: right;
+    margin: 20px 0px;
+}
+
+#retry_btn {
+    position: absolute;
+    right: 0%;
+    bottom: 8%;
+    height: 100px;
+    width: 300px;
+    font-size: 60px;
+    color: rgb(150, 150, 150);
+    margin: auto;
+    text-align: center;
+    line-height: 100px;
+}
+
