@@ -11,10 +11,8 @@ class BattleDom {
   #vsImgHtml = '<img src="../img/vs.png" alt="">';
 
   // プレイヤーの画像
-  #playerImgHtml = {
-    normal: '<img src="../img/ryu_battle.png" alt="" />',
-    lose: '<img src="../img/ryu_battle_lose.png" alt="" />',
-  };
+  #playerImgHtml = '<img src="../img/ryu_battle.png" alt="" />';
+  #playerLoseImgHtml = '<img src="../img/ryu_battle_lose.png" alt="" />';
 
   // 対戦相手の画像
   #opponentImgHtml = {
@@ -22,7 +20,6 @@ class BattleDom {
     2: '<img src="../img/sagat_battle.png" alt="" />',
     3: '<img src="../img/vega_battle.png" alt="" />',
   };
-
   #opponentLoseImgHtml = {
     1: '<img src="../img/blanka_battle_lose.png" alt="" />',
     2: '<img src="../img/sagat_battle_lose.png" alt="" />',
@@ -72,7 +69,7 @@ class BattleDom {
     $("#btm").append(this.#vsImgHtml).hide().fadeIn(500);
 
     $("#left_mid").empty();
-    $("#left_mid").append(this.#playerImgHtml["normal"]).hide().fadeIn(500);
+    $("#left_mid").append(this.#playerImgHtml).hide().fadeIn(500);
 
     $("#right_mid").empty();
     $("#right_mid").append(this.#opponentImgHtml[battleNum]).hide().fadeIn(500);
@@ -118,7 +115,7 @@ class BattleDom {
       $("#right_mid").append(this.#opponentLoseImgHtml[battleNum]);
     } else if (result == "YOU LOSE") {
       $("#left_mid").empty();
-      $("#left_mid").append(this.#playerImgHtml["lose"]);
+      $("#left_mid").append(this.#playerLoseImgHtml);
     }
   }
 
