@@ -7,10 +7,10 @@ main {
     height: 100%;
     display: grid;
     grid-template: 
-        "left_top ctr right_top" 100px
-        "left_mid ctr right_mid" 1fr
-        "btm      btm btm"       250px
-        / 3fr     4fr 3fr;
+        "left_top ctr_top right_top" 100px
+        "left_mid ctr     right_mid" 1fr
+        "btm      btm     btm"       250px
+        / 3fr     4fr     3fr;
 }
 
 #left_top {
@@ -19,6 +19,28 @@ main {
 
 #left_mid {
     grid-area: left_mid;
+}
+
+#ctr_top {
+    grid-area: ctr_top;
+    background-color: gray;
+    border-radius: 40%;
+    width: 200px;
+    height: 35px;
+    margin: auto;
+    font-size: 20px;
+    color: white;
+    display: flex;
+}
+
+#ctr_top>p {
+    margin: auto;
+}
+
+#ctr_top:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s 0s ease-in-out;
 }
 
 #ctr {
