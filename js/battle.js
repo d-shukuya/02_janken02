@@ -22,6 +22,8 @@ $(window).on("load", async function () {
 
 // デモモードボタン押下時のイベント
 $("#ctr_top").on("click", function () {
+  dom.PlayChengeDemoModeSound();
+
   switch (demoMode) {
     case "off":
       demoMode = "on";
@@ -62,13 +64,13 @@ $("#btm").on("click", ".choice", async function (e) {
   // 結果を画面に表示
   dom.DisplayResult(state.PlayerHand, state.ComHand, state.Result, state.NowBattleNum);
 
-  await dom.Sleep(1500);
+  await dom.Sleep(3000);
   nextAction[state.CheckNext()]();
 });
 
 const nextAction = {
   draw: function () {
-    dom.DisplayDraw();
+    dom.DisplayDraw(state.NowBattleNum);
   },
   winNextRound: function () {
     state.PlayerGotRound++;

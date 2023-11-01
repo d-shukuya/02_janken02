@@ -45,6 +45,34 @@ class BattleDom {
     return this.SetTag("p", "", val);
   }
 
+  // ステージBGM
+  #stageBgmId = {
+    1: "#stage1_bgm",
+    2: "#stage2_bgm",
+    3: "#stage3_bgm",
+  };
+
+  // ラウンド進行音ID
+  #callRoundId = {
+    1: "#round1_call",
+    2: "#round2_call",
+    3: "#round3_call",
+  };
+  #resultCallId = {
+    "YOU WIN": "#win_call",
+    "YOU LOSE": "#lose_call",
+  };
+  #fightCallId = "#fight_call";
+
+  // 攻撃音ID
+  #ryuAttackVoiceId = "#ryu_attack_voice";
+  #opponentAttackVoiceId = {
+    1: "#blanka_attack_voice",
+    2: "#sagat_attack_voice",
+    3: "#vega_attack_voice",
+  };
+  #koVoiceId = "#ko_voice";
+
   // じゃんけん合図の表記
   #jankenStrHtml = "<p>JANKEN!</p>";
   #drawJankenStrHtml = "<p>AIKO DE!</p>";
@@ -78,13 +106,16 @@ class BattleDom {
     $("#ctr_top").append(this.#demoModeHtml[demoMode]);
   }
 
+  PlayChengeDemoModeSound() {
+    $("#demo_mode_sound").get(0).play();
+  }
+
   SetStage(battleNum) {
     $("#stage_img_flame").append(this.#stageImgHtml[battleNum]);
+    $(this.#stageBgmId[battleNum]).get(0).play();
   }
 
   SetPlayer(battleNum) {
-    $("#btm").append(this.#vsImgHtml).hide().fadeIn(500);
-
     $("#left_mid").empty();
     $("#left_mid").append(this.#playerImgHtml).hide().fadeIn(500);
 
@@ -92,11 +123,13 @@ class BattleDom {
     $("#right_mid").append(this.#opponentImgHtml[battleNum]).hide().fadeIn(500);
   }
 
-  async CallJanken(roundNum) {
+  async DisplayJanken(roundNum) {
+    $(this.#callRoundId[roundNum]).get(0).play();
+
     $("#ctr").empty();
     $("#ctr").append(this.GetRoundHtml(roundNum)).hide().fadeIn(1000).fadeOut(1000);
 
-    await this.Sleep(2500);
+    await this.Sleep(2000);
     $("#ctr").empty();
     $("#ctr").append(this.#jankenStrHtml).hide().fadeIn(500);
 
@@ -105,8 +138,9 @@ class BattleDom {
   }
 
   DisplayRoundStart(battleNum, roundNum) {
+    $("#btm").append(this.#vsImgHtml).hide().fadeIn(500);
     this.SetPlayer(battleNum);
-    this.CallJanken(roundNum);
+    this.DisplayJanken(roundNum);
   }
 
   SetWinStar(result) {
@@ -117,7 +151,33 @@ class BattleDom {
     }
   }
 
-  DisplayResult(pHand, cHand, result, battleNum) {
+  async DisplayResult(pHand, cHand, result, battleNum) {
+    if (result == "YOU WIN") {
+      $(this.#ryuAttackVoiceId).get(0).play();
+      await this.Sleep(500);
+      $(this.#koVoiceId).get(0).play();
+      $("#left_mid").empty();
+      $("#left_mid").append(this.#playerWinImgHtml);
+      $("#right_mid").empty();
+      $("#right_mid").append(this.#opponentLoseImgHtml[battleNum]);
+    } else if (result == "YOU LOSE") {
+      $(this.#opponentAttackVoiceId[battleNum]).get(0).play();
+      await this.Sleep(500);
+      $(this.#koVoiceId).get(0).play();
+      $("#left_mid").empty();
+      $("#left_mid").append(this.#playerLoseImgHtml);
+      $("#right_mid").empty();
+      $("#right_mid").append(this.#opponentWinImgHtml[battleNum]);
+    } else {
+      $(this.#ryuAttackVoiceId).get(0).play();
+      $(this.#opponentAttackVoiceId[battleNum]).get(0).play();
+      $("#left_mid").empty();
+      $("#left_mid").append(this.#playerWinImgHtml);
+      $("#right_mid").empty();
+      $("#right_mid").append(this.#opponentWinImgHtml[battleNum]);
+    }
+
+    await this.Sleep(1000);
     let resultStrHtml = this.SetTag("p", "", result);
     let resultImgHtml = this.SetTag(
       "ul",
@@ -126,23 +186,15 @@ class BattleDom {
     );
     $("#ctr").append(resultStrHtml).hide().fadeIn(150);
     $("#ctr").append(resultImgHtml).hide().fadeIn(150);
-
-    if (result == "YOU WIN") {
-      $("#left_mid").empty();
-      $("#left_mid").append(this.#playerWinImgHtml);
-      $("#right_mid").empty();
-      $("#right_mid").append(this.#opponentLoseImgHtml[battleNum]);
-    } else if (result == "YOU LOSE") {
-      $("#left_mid").empty();
-      $("#left_mid").append(this.#playerLoseImgHtml);
-      $("#right_mid").empty();
-      $("#right_mid").append(this.#opponentWinImgHtml[battleNum]);
-    }
+    $(this.#resultCallId[result]).get(0).play();
   }
 
-  DisplayDraw() {
+  DisplayDraw(battleNum) {
+    this.SetPlayer(battleNum);
+
     $("#ctr").empty();
     $("#ctr").append(this.#drawJankenStrHtml).hide().fadeIn(500);
+    $(this.#fightCallId).get(0).play();
 
     $("#btm").empty();
     $("#btm").append(this.#jankenBtnSet).hide().fadeIn(500);
