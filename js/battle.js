@@ -16,6 +16,7 @@ $(window).on("load", async function () {
   }
 
   dom.SetDemoMode(demoMode);
+  dom.SetStage(state.NowBattleNum);
   dom.DisplayRoundStart(state.NowBattleNum, state.NowRound);
 });
 

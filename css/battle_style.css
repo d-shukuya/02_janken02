@@ -2,7 +2,20 @@ main {
     position: relative;
 }
 
+#stage_img_flame {
+    position: relative;
+    z-index: 0;
+}
+
+#stage_img_flame>img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
 #container {
+    position: absolute;
+    z-index: 1;
     width: 100%;
     height: 100%;
     display: grid;
@@ -72,6 +85,13 @@ main {
     height: 100%;
 }
 
+#container>#left_mid>img,
+#container>#right_mid>img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
 #container>#btm>img,
 #container>#left_top>img,
 #container>#right_top>img  {
@@ -85,7 +105,6 @@ main {
     justify-content: space-evenly;
     width: 100%;
     height: 250px;
-    background-color: grey;
 }
 
 #janken_list>li {
