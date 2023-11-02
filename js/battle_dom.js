@@ -106,7 +106,7 @@ class BattleDom {
     $("#ctr_top").append(this.#demoModeHtml[demoMode]);
   }
 
-  PlayChengeDemoModeSound() {
+  PlayChangeDemoModeSound() {
     $("#demo_mode_sound").get(0).play();
   }
 

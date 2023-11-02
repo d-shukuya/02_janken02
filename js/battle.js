@@ -22,7 +22,7 @@ $(window).on("load", async function () {
 
 // デモモードボタン押下時のイベント
 $("#ctr_top").on("click", function () {
-  dom.PlayChengeDemoModeSound();
+  dom.PlayChangeDemoModeSound();
 
   switch (demoMode) {
     case "off":
