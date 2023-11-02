@@ -35,3 +35,19 @@ main {
     font-size: 60px;
     color: rgb(150, 150, 150);
 }
+
+#play_opening_bgm {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background-color: black;
+    border: none;
+    color: gray;
+}
+
+#start_btn:hover,
+#play_opening_bgm:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s 0s ease-in-out;
+}
